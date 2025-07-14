@@ -1,5 +1,13 @@
 # SUPERMODELS - CHANGELOG
 
+## [0.1.13] -- *07/14/2025*
+* Implemented concrete SQLAlchemy adapter with full DBAdapter interface
+* Added SQLAlchemy session management with proper error handling and rollback
+* Created pagination support with OrderBy enum and sorting capabilities
+* Implemented bulk operations (bulkadd, bulkupdate, bulkdelete) for performance
+* Added Manager factory methods and global default adapter support via __getitem__
+* Created type-safe SQLAlchemy integration with Engine and sessionmaker support
+
 ## [0.1.12] -- *07/14/2025*
 * Implemented Manager class with `*models` signature for dynamic model management
 * Added ManagerContext for context-managed database operations

@@ -11,6 +11,9 @@ from supermodels.core.bases.adapter import DBAdapter
 from supermodels.core.bases.manager import BaseManager
 from supermodels.core.metas.manager import ManagerMeta
 
+if t.TYPE_CHECKING:
+    from sqlalchemy.orm import Session as SQLASession
+    from sqlalchemy.engine import Engine as SQLAEngine
 
 def registeroperations(cls):
     """..."""
@@ -125,10 +128,14 @@ class ManagerContext(t.Generic[SessionType]):
 
 class Manager:
     """..."""
+    _defaultadapter: t.Optional[DBAdapter] = None
 
-    def __init__(self, adapter: DBAdapter[SessionType]):
+    def __init__(self, adapter: t.Optional[DBAdapter[SessionType]] = None):
         """..."""
-        self.adapter = adapter
+        _adapter = (adapter or self._defaultadapter)
+        if not _adapter:
+            raise ValueError(f"No adapter provided and no default set")
+        self.adapter: DBAdapter = _adapter
 
     def __call__(self, *models: t.Type[t.Any]) -> 'ManagerContext':
         """..."""
@@ -144,3 +151,16 @@ class Manager:
         if unregistered: raise ValueError()
 
         return ManagerContext(self.adapter, *models)
+
+    @classmethod
+    def __getitem__(cls, adapter: DBAdapter) -> t.Type['Manager']:
+        """..."""
+        cls._defaultadapter = adapter
+        return cls
+
+    @classmethod
+    def SQLA(cls, engine: 'SQLAEngine') -> 'Manager':
+        """..."""
+        from adapters.sqla import SQLAAdapter
+        adapter = SQLAAdapter(engine)
+        return cls(adapter)
