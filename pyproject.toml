@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "supermodels"
+dynamic = ["version"]
+description = "Context managed database operations"
+readme = "docs/README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Joel Yisrael", email = "schizoprada@gmail.com"}
+]
+classifiers = []
+keywords = []
+requires-python = ">=3.13"
+dependencies = []
+
+[tool.setuptools]
+packages = ["supermodels"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.exclude-package-data]
+"supermodels" = [
+    "__pycache__",
+    "*.pyc",
+    ".DS_Store"
+]
+
+[tool.hatch.version]
+path = "src/supermodels/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/supermodels"]
