@@ -1,6 +1,9 @@
 # ~/supermodels/src/supermodels/core/models/tvars.py
 """
-typing.TypeVars
+Type Variables
+
+Common type variables used throughout the supermodels package.
+Provides consistent typing for generic classes and functions.
 """
 from __future__ import annotations
 import typing as t

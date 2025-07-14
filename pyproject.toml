@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 [project]
 name = "supermodels"
 dynamic = ["version"]
-description = "Context managed database operations"
+description = "Type-safe, framework-agnostic database managers with context management and dynamic method dispatch"
 readme = "docs/README.md"
 license = {text = "MIT"}
 authors = [
@@ -15,7 +15,9 @@ authors = [
 classifiers = []
 keywords = []
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "sqlalchemy"
+]
 
 [tool.setuptools]
 packages = ["supermodels"]

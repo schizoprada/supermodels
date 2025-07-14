@@ -1,6 +1,9 @@
 # ~/supermodels/src/supermodels/core/hints.py
 """
-...
+Type Hints and Aliases
+
+Common type aliases used throughout the supermodels package for better
+type safety and code readability.
 """
 from __future__ import annotations
 import typing as t

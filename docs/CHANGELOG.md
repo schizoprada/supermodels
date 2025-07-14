@@ -1,5 +1,13 @@
 # SUPERMODELS - CHANGELOG
 
+## [0.1.14] -- *07/14/2025*
+* Added comprehensive documentation and docstrings throughout the codebase
+* Implemented detailed exception messages with context for better debugging
+* Created proper __init__ files with module exports and documentation
+* Added complete package documentation with usage examples
+* Improved error handling with descriptive messages for all edge cases
+* Organized imports and exports for clean public API interface
+
 ## [0.1.13] -- *07/14/2025*
 * Implemented concrete SQLAlchemy adapter with full DBAdapter interface
 * Added SQLAlchemy session management with proper error handling and rollback
