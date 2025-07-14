@@ -14,7 +14,7 @@ class BaseManager(abc.ABC, metaclass=ManagerMeta):
     """..."""
     ...
     __model__: t.Optional[t.Type[t.Any]] = None # set by subclasses for single model
-    __models__: t.Tuple[t.Type[t.Any]] = tuple()
+    __models__: t.Tuple[t.Type[t.Any], ...] = tuple()
 
     def __init__(self, session: SessionType, adapter: DBAdapter[SessionType]):
         """..."""

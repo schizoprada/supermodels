@@ -19,6 +19,10 @@ class ManagerMeta(abc.ABCMeta):
         """..."""
         newclass = super().__new__(cls, name, bases, attrs)
 
+        skippable = list({'BaseManager'})
+
+        if name in skippable: return newclass
+
         # register models -> manager mapping if model is defined
         managing = []
 
