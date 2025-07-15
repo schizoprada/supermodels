@@ -15,8 +15,8 @@ Type-safe, framework-agnostic database managers with context management and dyna
 ## Quick Start
 
 ```python
-from supermodels import Manager
-from supermodels.adapters import SQLA
+from supermodel import Manager
+from supermodel.adapters import SQLA
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -47,7 +47,7 @@ class OrderManager(BaseManager):
 engine = create_engine('sqlite:///example.db')
 Base.metadata.create_all(engine)
 
-# Use supermodels
+# Use supermodel
 manager = Manager(SQLA(engine))
 
 with manager(User, Order) as mgr:
@@ -97,8 +97,8 @@ with manager(User, Order) as mgr:
 Set a global default for convenience:
 
 ```python
-from supermodels import Manager
-from supermodels.adapters import SQLA
+from supermodel import Manager
+from supermodel.adapters import SQLA
 
 # Set global default
 Manager[SQLA(engine)]
@@ -122,7 +122,7 @@ with manager(User, Order) as mgr:
 ## Advanced SQLAlchemy Features
 
 ```python
-from supermodels.adapters.sqla import OrderBy, ASC, DESC
+from supermodel.adapters.sqla import OrderBy, ASC, DESC
 
 adapter = SQLA(engine)
 
@@ -143,7 +143,7 @@ with adapter.createsession() as session:
 ## Installation
 
 ```bash
-pip3 install supermodels
+pip3 install supermodel
 ```
 
 ## Requirements

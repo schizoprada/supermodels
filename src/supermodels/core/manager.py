@@ -185,6 +185,6 @@ class Manager:
     @classmethod
     def SQLA(cls, engine: 'SQLAEngine') -> 'Manager':
         """Factory method for SQLAlchemy adapter."""
-        from adapters.sqla import SQLAAdapter
+        from supermodels.adapters.sqla import SQLAAdapter
         adapter = SQLAAdapter(engine)
         return cls(adapter)

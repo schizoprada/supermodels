@@ -1,5 +1,11 @@
 # SUPERMODELS - CHANGELOG
 
+## [0.1.16] -- *07/15/2025*
+* Renamed `supermodels` -> `supermodel`
+
+## [0.1.15] -- *07/14/2025*
+* Renamed `supermodels` -> `supermodel`
+
 ## [0.1.14] -- *07/14/2025*
 * Added comprehensive documentation and docstrings throughout the codebase
 * Implemented detailed exception messages with context for better debugging

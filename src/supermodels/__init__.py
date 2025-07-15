@@ -28,7 +28,7 @@ Example:
     ...     order = mgr.add(Order(user_id=user.id))
 """
 
-__version__ = "0.1.14"
+__version__ = "0.1.16"
 __author__ = "Joel Yisrael"
 __email__ = "schizoprada@gmail.com"
 __license__ = "MIT"
