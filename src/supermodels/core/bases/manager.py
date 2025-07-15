@@ -11,8 +11,9 @@ import abc, typing as t
 from supermodels.core.models.tvars import SessionType, ModelType
 from supermodels.core.bases.adapter import DBAdapter
 from supermodels.core.metas.manager import ManagerMeta
+from supermodels.core.utils.decorators import registeroperations
 
-
+@registeroperations
 class BaseManager(abc.ABC, metaclass=ManagerMeta):
     """Abstract base class for model managers.
 
@@ -50,6 +51,7 @@ class BaseManager(abc.ABC, metaclass=ManagerMeta):
             """
         )
 
+    ## CRUD ##
     def add(self, item: t.Any) -> t.Any:
         """Add an item to the database."""
         return self.adapter.additem(self.session, item)
@@ -77,3 +79,44 @@ class BaseManager(abc.ABC, metaclass=ManagerMeta):
 
         result =  self.adapter.queryby(self.session, m, **kwargs)
         return t.cast(t.List[ModelType], result)
+
+    ## BULK ##
+    def bulkadd(self, *items: t.Any) -> t.List[t.Any]:
+        """Add multiple items in bulk."""
+        return self.adapter.bulkadd(self.session, *items)
+
+    def bulkupdate(self, *items: t.Any) -> t.List[t.Any]:
+        """Update multiple items in bulk."""
+        return self.adapter.bulkupdate(self.session, *items)
+
+    def bulkdelete(self, *items: t.Any) -> bool:
+        """Delete multiple items in bulk."""
+        return self.adapter.bulkdelete(self.session, *items)
+
+    ## ADVANCED QUERYING ##
+    def getall(self, model: t.Optional[t.Type[ModelType]] = None) -> t.List[ModelType]:
+        """Get all items of a model type."""
+        m = model or self.__model__
+        if not m:
+            raise ValueError("No model provided and no default model configured for this manager")
+        return self.adapter.queryall(self.session, m) # type: ignore
+
+    def getone(self, model: t.Optional[t.Type[ModelType]], **kwargs: t.Any) -> t.Optional[ModelType]:
+        """Get single item by filter criteria, optionally specifying model type."""
+        m = model or self.__model__
+        if not m:
+            raise ValueError("No model provided and no default model configured for this manager")
+        return self.adapter.queryoneby(self.session, m, **kwargs)
+
+    ## SESSION MANAGEMENT ##
+    def close(self) -> None:
+        """Close the current session."""
+        self.adapter.closesession(self.session)
+
+    def commit(self) -> None:
+        """Commit current session."""
+        self.session.commit()  # type: ignore
+
+    def rollback(self) -> None:
+        """Rollback current session."""
+        self.session.rollback()  # type: ignore

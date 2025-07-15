@@ -63,3 +63,18 @@ class DBAdapter(abc.ABC, t.Generic[SessionType]):
     def deleteitem(self, session: SessionType, item: t.Any) -> bool:
         """Delete an item from the database."""
         pass
+
+    @abc.abstractmethod
+    def bulkadd(self, session: SessionType, *items: t.Any) -> t.List[t.Any]:
+        """Add multiple items to the database in a single transaction."""
+        pass
+
+    @abc.abstractmethod
+    def bulkupdate(self, session: SessionType, *items: t.Any) -> t.List[t.Any]:
+        """Update multiple items in the database in a single transaction."""
+        pass
+
+    @abc.abstractmethod
+    def bulkdelete(self, session: SessionType, *items: t.Any) -> bool:
+        """Delete multiple items from the database in a single transaction."""
+        pass

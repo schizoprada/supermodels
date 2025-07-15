@@ -1,5 +1,17 @@
 # SUPERMODELS - CHANGELOG
 
+## [0.1.17] -- *07/15/2025*
+* Enhanced Manager class with ergonomic initialization - supports both `Manager(adapter, User, Order)` and `Manager(adapter)(User, Order)` patterns
+* Refactored registeroperations decorator into dedicated core/utils/decorators.py module for better organization
+* Moved ManagerContext to core/models/contexts.py for improved code structure
+* Extended BaseManager with dynamic operation registration and dispatch capabilities via @registeroperations decorator
+* Added session management methods to BaseManager (close, commit, rollback)
+* Implemented bulk operations for BaseManager (bulkadd, bulkupdate, bulkdelete)
+* Added advanced query methods to BaseManager (getall, getone)
+* Made bulk operations abstract methods in DBAdapter base class for consistent interface
+* Improved type safety with proper overloads for registeroperations decorator
+* Unified operation dispatch between ManagerContext and BaseManager while maintaining their distinct responsibilities
+
 ## [0.1.16] -- *07/15/2025*
 * Renamed `supermodels` -> `supermodel`
 
