@@ -1,5 +1,14 @@
 # SUPERMODELS - CHANGELOG
 
+## [0.1.18] -- *07/20/2025*
+* Added framework-agnostic converter system for complex Python object serialization
+* Implemented DataclassConverter for automatic dataclass ↔ JSON conversion with datetime field support
+* Implemented PydanticConverter for Pydantic model serialization using built-in model_dump()
+* Created SQLATypeAdapter for integrating converters with SQLAlchemy column types
+* Added convenient factory methods: DCType for dataclasses, PydType for Pydantic models
+* Enhanced type safety with ConversionTarget and ConversionOptions type aliases
+* Structured converters as reusable components for future database adapter support
+
 ## [0.1.17] -- *07/15/2025*
 * Enhanced Manager class with ergonomic initialization - supports both `Manager(adapter, User, Order)` and `Manager(adapter)(User, Order)` patterns
 * Refactored registeroperations decorator into dedicated core/utils/decorators.py module for better organization
